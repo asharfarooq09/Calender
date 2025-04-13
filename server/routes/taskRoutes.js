@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
 
-// Get all tasks
 router.get('/', async (req, res) => {
   try {
     const tasks = await Task.find();
@@ -13,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get tasks by goal ID
 router.get('/goal/:goalId', async (req, res) => {
   try {
     const tasks = await Task.find({ goalId: req.params.goalId });
@@ -23,7 +21,6 @@ router.get('/goal/:goalId', async (req, res) => {
   }
 });
 
-// Create a new task
 router.post('/', async (req, res) => {
   const task = new Task({
     name: req.body.name,
@@ -39,7 +36,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get a specific task
 router.get('/:id', async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -50,7 +46,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update a task
 router.put('/:id', async (req, res) => {
   try {
     const updatedTask = await Task.findByIdAndUpdate(
@@ -65,7 +60,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a task
 router.delete('/:id', async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);

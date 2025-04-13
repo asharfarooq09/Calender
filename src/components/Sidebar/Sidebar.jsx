@@ -11,12 +11,10 @@ const Sidebar = () => {
   const { goals, selectedGoal } = useSelector((state) => state.goals);
   const { tasks } = useSelector((state) => state.tasks);
   
-  // Fetch goals on component mount
   useEffect(() => {
     dispatch(fetchGoals());
   }, [dispatch]);
   
-  // Handle goal selection
   const handleGoalClick = (goal) => {
     dispatch(selectGoal(goal));
     dispatch(fetchTasksByGoal(goal._id));

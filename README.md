@@ -1,73 +1,47 @@
-# Welcome to your Lovable project
+# 📅 Calendar Event Scheduler Pro
 
-## Project info
+A fully interactive calendar scheduling application built using **React**, **Redux**, and **MongoDB**. Designed with drag-and-drop functionality, dynamic task-goal syncing, and real-time event manipulation—similar to Google Calendar.
 
-**URL**: https://lovable.dev/projects/0c9b3a1b-5270-4064-bc92-b9efead3ba16
+---
 
-## How can I edit this code?
+## 🚀 Project Overview
 
-There are several ways of editing your application.
+This project enables users to schedule events by dragging and dropping tasks from a sidebar directly into calendar slots. Events can be created, updated, resized, and deleted with ease. Events persist through API-backed MongoDB integration.
 
-**Use Lovable**
+### 🌐 Live Demo
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0c9b3a1b-5270-4064-bc92-b9efead3ba16) and start prompting.
+_Coming Soon (or include your deployed URL if hosted)_
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠️ Features
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 📆 Calendar Functionality
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Create, update, and delete events via modal dialog
+- Drag-and-drop task scheduling from sidebar to calendar
+- Resizable events (adjust time duration)
+- Move events across days/times via drag-and-drop
+- 15-minute precision support
 
-Follow these steps:
+### 🧠 Smart Task Mapping
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Left sidebar shows **Goals**
+- Clicking a goal fetches related **Tasks** from MongoDB
+- Tasks inherit their goal's color
+- Dropping a task into the calendar auto-fills modal details
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### ⚙️ Backend API
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Built with Node.js + Express
+- MongoDB Atlas used as the database
+- API routes:
+  - `GET /api/goals` – fetch goals
+  - `GET /api/tasks` – fetch tasks
+  - `POST /api/events` – create an event
+  - `PUT /api/events/:id` – update an event
+  - `DELETE /api/events/:id` – delete an event
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0c9b3a1b-5270-4064-bc92-b9efead3ba16) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📁 Project Structure

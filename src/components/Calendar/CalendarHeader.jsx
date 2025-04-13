@@ -10,7 +10,6 @@ const CalendarHeader = ({
   handleNext,
   handleToday,
 }) => {
-  // Format the current month and year for display
   const dateFormat = view === 'month' ? 'MMMM yyyy' : 'MMMM d, yyyy';
 
   return (

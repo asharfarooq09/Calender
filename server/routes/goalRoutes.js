@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 const Goal = require('../models/Goal');
 
-// Get all goals
 router.get('/', async (req, res) => {
   try {
     const goals = await Goal.find();
@@ -13,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Create a new goal
 router.post('/', async (req, res) => {
   const goal = new Goal({
     name: req.body.name,
@@ -28,7 +26,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get a specific goal
 router.get('/:id', async (req, res) => {
   try {
     const goal = await Goal.findById(req.params.id);
@@ -39,7 +36,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update a goal
 router.put('/:id', async (req, res) => {
   try {
     const updatedGoal = await Goal.findByIdAndUpdate(
@@ -54,7 +50,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a goal
 router.delete('/:id', async (req, res) => {
   try {
     const goal = await Goal.findByIdAndDelete(req.params.id);

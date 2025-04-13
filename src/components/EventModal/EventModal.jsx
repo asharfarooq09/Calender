@@ -17,7 +17,6 @@ const EventModal = ({ show, onClose, selectedEvent, selectedTimeSlot }) => {
     endTime: '10:00',
   });
   
-  // Set form data from selected event or time slot
   useEffect(() => {
     if (selectedEvent) {
       const start = new Date(selectedEvent.start);
@@ -45,7 +44,6 @@ const EventModal = ({ show, onClose, selectedEvent, selectedTimeSlot }) => {
     }
   }, [selectedEvent, selectedTimeSlot]);
   
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -54,15 +52,12 @@ const EventModal = ({ show, onClose, selectedEvent, selectedTimeSlot }) => {
     });
   };
   
-  // Handle form submission to create or update an event
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Parse dates and times
     const startDateTime = parseDateTime(formData.startDate, formData.startTime);
     const endDateTime = parseDateTime(formData.endDate, formData.endTime);
     
-    // Create event object
     const eventData = {
       title: formData.title,
       category: formData.category,
@@ -71,7 +66,6 @@ const EventModal = ({ show, onClose, selectedEvent, selectedTimeSlot }) => {
       color: getCategoryColor(formData.category),
     };
     
-    // Dispatch action to add or update event
     if (selectedEvent) {
       dispatch(updateEvent(selectedEvent._id, eventData));
     } else {
@@ -81,12 +75,10 @@ const EventModal = ({ show, onClose, selectedEvent, selectedTimeSlot }) => {
     onClose();
   };
   
-  // Parse date and time strings to create a Date object
   const parseDateTime = (dateString, timeString) => {
     return parse(`${dateString} ${timeString}`, 'yyyy-MM-dd HH:mm', new Date());
   };
   
-  // Handle event deletion
   const handleDelete = () => {
     if (selectedEvent) {
       if (window.confirm('Are you sure you want to delete this event?')) {
@@ -96,7 +88,6 @@ const EventModal = ({ show, onClose, selectedEvent, selectedTimeSlot }) => {
     }
   };
   
-  // Get color based on event category
   const getCategoryColor = (category) => {
     const colors = {
       exercise: '#4CAF50',
@@ -110,7 +101,6 @@ const EventModal = ({ show, onClose, selectedEvent, selectedTimeSlot }) => {
     return colors[category] || '#2196F3';
   };
   
-  // If modal is not shown, don't render
   if (!show) return null;
   
   return (

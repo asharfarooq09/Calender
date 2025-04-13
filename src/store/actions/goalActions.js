@@ -67,7 +67,6 @@ export const addGoal = (goalData) => async (dispatch) => {
   try {
     const res = await axios.post(`${API_URL}/goals`, goalData);
     
-    // After adding a goal, fetch all goals again to update the list
     dispatch(fetchGoals());
     
     return res.data;
@@ -76,12 +75,10 @@ export const addGoal = (goalData) => async (dispatch) => {
   }
 };
 
-// Update a goal
 export const updateGoal = (goalId, goalData) => async (dispatch) => {
   try {
     const res = await axios.put(`${API_URL}/goals/${goalId}`, goalData);
     
-    // After updating a goal, fetch all goals again to update the list
     dispatch(fetchGoals());
     
     return res.data;
@@ -90,12 +87,10 @@ export const updateGoal = (goalId, goalData) => async (dispatch) => {
   }
 };
 
-// Delete a goal
 export const deleteGoal = (goalId) => async (dispatch) => {
   try {
     await axios.delete(`${API_URL}/goals/${goalId}`);
     
-    // After deleting a goal, fetch all goals again to update the list
     dispatch(fetchGoals());
   } catch (error) {
     console.error('Error deleting goal:', error);

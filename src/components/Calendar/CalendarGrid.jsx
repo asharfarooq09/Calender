@@ -11,13 +11,10 @@ const CalendarGrid = ({
   handleEventClick,
   handleEventDrop,
 }) => {
-  // State to track which cell is currently being dragged over
   const [dragOverCell, setDragOverCell] = useState(null);
   
-  // Generate time slots from 7 AM to 8 PM
   const timeSlots = Array.from({ length: 14 }, (_, i) => i + 7);
   
-  // Check if event should be displayed in this day and time
   const shouldDisplayEvent = (event, day, hour) => {
     const eventStart = new Date(event.start);
     const eventEnd = new Date(event.end);
@@ -29,7 +26,6 @@ const CalendarGrid = ({
     );
   };
   
-  // Calculate event position and height
   const getEventStyle = (event, hour) => {
     const eventStart = new Date(event.start);
     const eventEnd = new Date(event.end);
@@ -54,7 +50,6 @@ const CalendarGrid = ({
     };
   };
 
-  // Create a drop target for each cell
   const TimeCell = ({ day, hour, children }) => {
     const cellId = `${day.dayName}-${day.dayNumber}-${hour}`;
     
@@ -121,7 +116,6 @@ const CalendarGrid = ({
   
   return (
     <div className="calendar-grid">
-      {/* Time labels column */}
       <div className="time-labels">
         <div className="day-header" style={{ backgroundColor: '#f5f5f5', height: '64px' }}></div>
         {timeSlots.map(hour => (
@@ -131,19 +125,15 @@ const CalendarGrid = ({
         ))}
       </div>
       
-      {/* Day columns */}
       {days.map(day => (
         <div key={day.dayName + day.dayNumber} className="day-column">
-          {/* Day header */}
           <div className={`day-header ${isSameDay(day.date, new Date()) ? 'current-day' : ''}`}>
             <div className="day-name">{day.dayName}</div>
             <div className="day-number">{day.dayNumber}</div>
           </div>
           
-          {/* Time cells */}
           {timeSlots.map(hour => (
             <TimeCell key={`${day.dayNumber}-${hour}`} day={day} hour={hour}>
-              {/* Events */}
               {events
                 .filter(event => shouldDisplayEvent(event, day, hour))
                 .map(event => (

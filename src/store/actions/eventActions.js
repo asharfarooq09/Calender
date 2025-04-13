@@ -9,15 +9,12 @@ import {
   DELETE_EVENT_SUCCESS,
 } from '../types';
 
-// API URL - replace with your actual MongoDB API endpoint
 const API_URL = 'http://localhost:5000/api';
 
-// Fetch events
 export const fetchEvents = () => async (dispatch) => {
   try {
     dispatch({ type: FETCH_EVENTS_REQUEST });
     
-    // Connect to real API endpoint
     const res = await axios.get(`${API_URL}/events`);
     
     dispatch({
@@ -27,7 +24,6 @@ export const fetchEvents = () => async (dispatch) => {
   } catch (error) {
     console.error('Error fetching events:', error);
     
-    // Mock data as fallback for development
     const mockEvents = [
       {
         _id: '1',
@@ -62,7 +58,6 @@ export const fetchEvents = () => async (dispatch) => {
   }
 };
 
-// Add event
 export const addEvent = (eventData) => async (dispatch) => {
   try {
     const res = await axios.post(`${API_URL}/events`, eventData);
@@ -76,8 +71,6 @@ export const addEvent = (eventData) => async (dispatch) => {
   } catch (error) {
     console.error('Error adding event:', error);
     
-    // For development without actual API:
-    // Mock response for testing
     const newEvent = {
       ...eventData,
       _id: Math.random().toString(36).substr(2, 9),
@@ -92,7 +85,6 @@ export const addEvent = (eventData) => async (dispatch) => {
   }
 };
 
-// Update event
 export const updateEvent = (eventId, eventData) => async (dispatch) => {
   try {
     const res = await axios.put(`${API_URL}/events/${eventId}`, eventData);
@@ -106,8 +98,6 @@ export const updateEvent = (eventId, eventData) => async (dispatch) => {
   } catch (error) {
     console.error('Error updating event:', error);
     
-    // For development without actual API:
-    // Mock response for testing
     const updatedEvent = {
       ...eventData,
       _id: eventId,
@@ -122,7 +112,6 @@ export const updateEvent = (eventId, eventData) => async (dispatch) => {
   }
 };
 
-// Delete event
 export const deleteEvent = (eventId) => async (dispatch) => {
   try {
     await axios.delete(`${API_URL}/events/${eventId}`);
@@ -134,7 +123,6 @@ export const deleteEvent = (eventId) => async (dispatch) => {
   } catch (error) {
     console.error('Error deleting event:', error);
     
-    // For development without actual API:
     dispatch({
       type: DELETE_EVENT_SUCCESS,
       payload: eventId,

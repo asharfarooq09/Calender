@@ -7,14 +7,12 @@ import { addEvent } from '../../store/actions/eventActions';
 const TaskItem = ({ task }) => {
   const dispatch = useDispatch();
 
-  // Set up drag functionality
   const [{ isDragging }, drag] = useDrag({
     type: 'TASK',
     item: { id: task._id, name: task.name, color: task.color },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && dropResult) {
-        // When task is dropped on calendar, create a new event
         const startTime = new Date(dropResult.start);
         const endTime = new Date(dropResult.end);
 
@@ -34,7 +32,6 @@ const TaskItem = ({ task }) => {
     }),
   });
 
-  // Helper function to determine category from color
   const getCategoryFromColor = (color) => {
     const colorMap = {
       '#FF5252': 'exercise',

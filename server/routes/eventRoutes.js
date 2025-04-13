@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 const Event = require('../models/Event');
 
-// Get all events
 router.get('/', async (req, res) => {
   try {
     const events = await Event.find();
@@ -13,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Create a new event
 router.post('/', async (req, res) => {
   const event = new Event({
     title: req.body.title,
@@ -31,7 +29,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get a specific event
 router.get('/:id', async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
@@ -42,7 +39,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update an event
 router.put('/:id', async (req, res) => {
   try {
     const updatedEvent = await Event.findByIdAndUpdate(
@@ -57,7 +53,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete an event
 router.delete('/:id', async (req, res) => {
   try {
     const event = await Event.findByIdAndDelete(req.params.id);

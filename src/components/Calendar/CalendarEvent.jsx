@@ -5,7 +5,6 @@ import { useDrag } from 'react-dnd';
 const CalendarEvent = ({ event, style, onClick, onDrop }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
-  // Set up drag functionality
   const [{ isDragging }, drag] = useDrag({
     type: 'EVENT',
     item: { 
@@ -27,13 +26,11 @@ const CalendarEvent = ({ event, style, onClick, onDrop }) => {
     }),
   });
   
-  // Toggle expanded state
   const toggleExpand = (e) => {
     e.stopPropagation();
     setIsExpanded(!isExpanded);
   };
   
-  // Format event time
   const formatTime = (date) => {
     const dateObj = new Date(date);
     const hours = dateObj.getHours();
@@ -44,7 +41,6 @@ const CalendarEvent = ({ event, style, onClick, onDrop }) => {
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
   };
   
-  // Calculate event duration in minutes
   const getDuration = () => {
     const start = new Date(event.start);
     const end = new Date(event.end);
@@ -52,7 +48,6 @@ const CalendarEvent = ({ event, style, onClick, onDrop }) => {
     return Math.round(durationMs / (1000 * 60));
   };
   
-  // Determine if event is short (less than 30 minutes)
   const isShortEvent = getDuration() < 30;
   
   return (

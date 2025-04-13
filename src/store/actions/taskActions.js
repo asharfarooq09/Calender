@@ -6,15 +6,12 @@ import {
   FETCH_TASKS_FAILURE,
 } from '../types';
 
-// API URL - replace with your actual MongoDB API endpoint
 const API_URL = 'http://localhost:5000/api';
 
-// Fetch tasks by goal
 export const fetchTasksByGoal = (goalId) => async (dispatch) => {
   try {
     dispatch({ type: FETCH_TASKS_REQUEST });
     
-    // Connect to real API endpoint
     const res = await axios.get(`${API_URL}/tasks/goal/${goalId}`);
     dispatch({
       type: FETCH_TASKS_SUCCESS,
@@ -23,9 +20,8 @@ export const fetchTasksByGoal = (goalId) => async (dispatch) => {
   } catch (error) {
     console.error('Error fetching tasks:', error);
     
-    // Mock data as fallback for development
     const allMockTasks = {
-      '3': [ // LEARN goal
+      '3': [ 
         {
           _id: '1',
           name: 'AI based agents',
@@ -51,7 +47,7 @@ export const fetchTasksByGoal = (goalId) => async (dispatch) => {
           color: '#66BB6A',
         },
       ],
-      '1': [ // Be Fit goal
+      '1': [ 
         {
           _id: '5',
           name: 'Morning Run',
@@ -65,7 +61,7 @@ export const fetchTasksByGoal = (goalId) => async (dispatch) => {
           color: '#FF5252',
         },
       ],
-      '2': [ // Academics goal
+      '2': [ 
         {
           _id: '7',
           name: 'Study Math',
@@ -79,7 +75,7 @@ export const fetchTasksByGoal = (goalId) => async (dispatch) => {
           color: '#448AFF',
         },
       ],
-      '4': [ // Sports goal
+      '4': [ 
         {
           _id: '9',
           name: 'Soccer Practice',
@@ -104,12 +100,10 @@ export const fetchTasksByGoal = (goalId) => async (dispatch) => {
   }
 };
 
-// Add a new task
 export const addTask = (taskData) => async (dispatch) => {
   try {
     const res = await axios.post(`${API_URL}/tasks`, taskData);
     
-    // After adding a task, fetch all tasks for the goal again
     if (taskData.goalId) {
       dispatch(fetchTasksByGoal(taskData.goalId));
     }
@@ -120,12 +114,10 @@ export const addTask = (taskData) => async (dispatch) => {
   }
 };
 
-// Update a task
 export const updateTask = (taskId, taskData) => async (dispatch) => {
   try {
     const res = await axios.put(`${API_URL}/tasks/${taskId}`, taskData);
     
-    // After updating a task, fetch all tasks for the goal again
     if (taskData.goalId) {
       dispatch(fetchTasksByGoal(taskData.goalId));
     }
@@ -136,12 +128,10 @@ export const updateTask = (taskId, taskData) => async (dispatch) => {
   }
 };
 
-// Delete a task
 export const deleteTask = (taskId, goalId) => async (dispatch) => {
   try {
     await axios.delete(`${API_URL}/tasks/${taskId}`);
     
-    // After deleting a task, fetch all tasks for the goal again
     if (goalId) {
       dispatch(fetchTasksByGoal(goalId));
     }
